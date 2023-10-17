@@ -9,9 +9,19 @@ function setup() {
 
 function draw() {
   background(220);
+  drawBackground();
   drawButterfly(200, 200, 0.3);
 }
+function drawBackground() {
+  background(230, 151, 151);
+  fill(153, 22, 22, 100); // rust
+  noStroke();
+  triangle(0, 30, 400, 300, 0, 400);
 
+  fill(107, 0, 230, 200); // dark purple
+  triangle(-50, 200, 350, -150, 450, -170);
+  triangle(20, 0, 400, 250, 400, 275);
+}
 function drawButterfly(x, y, s) {
   // butterfly
   push();
