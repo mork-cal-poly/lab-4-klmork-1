@@ -15,6 +15,7 @@ let butterflyBot = 100;
 let milesX = 300;
 let milesY = 400;
 let milesR = 0;
+let milesS = 1;
 
 function setup() {
   // These lines are fitting our canvas
@@ -29,7 +30,7 @@ function draw() {
   background(220);
   drawBackground();
   drawButterfly(butterflyX, butterflyY, butterflyScale);
-  drawMiles(milesX, milesY, milesR);
+  drawMiles(milesX, milesY, milesR, milesS);
   if (clicked) {
     updateButterfly();
   }
@@ -128,10 +129,11 @@ function drawButterfly(x, y, s) {
   pop();
 }
 
-function drawMiles(x, y, r) {
+function drawMiles(x, y, r, s) {
   push();
   translate(x, y);
   rotate(r);
+  scale(s);
 
   //draw head
   fill(0);
@@ -208,6 +210,7 @@ function updateButterfly() {
 
 function updateMiles() {
   milesR += PI / 40;
+  milesS -= 0.02;
 }
 // Events
 function mousePressed() {
