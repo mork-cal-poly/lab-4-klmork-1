@@ -1,3 +1,8 @@
+// Butterfly Location
+let butterflyX = 50;
+let butterflyY = 300;
+let offsetY = 300;
+
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -10,7 +15,8 @@ function setup() {
 function draw() {
   background(220);
   drawBackground();
-  drawButterfly(200, 200, 0.3);
+  drawButterfly(butterflyX, butterflyY, 0.3);
+  updateButterfly();
 }
 function drawBackground() {
   background(230, 151, 151);
@@ -86,4 +92,12 @@ function drawButterfly(x, y, s) {
   pop();
 
   pop();
+}
+
+function updateButterfly() {
+  sinY = 50 * sin((1 / 10) * butterflyX);
+  butterflyY = sinY + offsetY;
+
+  butterflyX += 1;
+  offsetY -= 1;
 }
