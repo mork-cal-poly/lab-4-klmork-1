@@ -1,7 +1,14 @@
+let clicked = false;
+
 // Butterfly Location
 let butterflyX = 50;
 let butterflyY = 300;
 let offsetY = 300;
+let butterflyScale = 0.5;
+let butterflyLeft = -255; // leftmost point on unscaled butterfly
+let butterflyRight = 115; // rightmost point
+let butterflyTop = -145;
+let butterflyBot = 100;
 
 function setup() {
   // These lines are fitting our canvas
@@ -15,8 +22,12 @@ function setup() {
 function draw() {
   background(220);
   drawBackground();
-  drawButterfly(butterflyX, butterflyY, 0.3);
-  updateButterfly();
+  drawButterfly(butterflyX, butterflyY, butterflyScale);
+  // helper to see mouse location
+  text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
+  if (clicked) {
+    updateButterfly();
+  }
 }
 function drawBackground() {
   background(230, 151, 151);
@@ -90,7 +101,15 @@ function drawButterfly(x, y, s) {
   translate(0, 150);
   ellipse(0, 0, 20, 40);
   pop();
-
+  if (!clicked) {
+    // bounding box
+    rect(
+      butterflyLeft,
+      butterflyTop,
+      butterflyRight - butterflyLeft,
+      butterflyBot - butterflyTop
+    );
+  }
   pop();
 }
 
@@ -100,4 +119,22 @@ function updateButterfly() {
 
   butterflyX += 1;
   offsetY -= 1;
+}
+
+function mousePressed() {
+  // We translate and then scale the canvas
+  // When dealing with points, we do the opposite
+  // (scale then translate).
+  let leftSide = butterflyLeft * butterflyScale + butterflyX;
+  let rightSide = butterflyRight * butterflyScale + butterflyX;
+  let topSide = butterflyTop * butterflyScale + butterflyY;
+  let botSide = butterflyBot * butterflyScale + butterflyY;
+  if (
+    mouseX > leftSide &&
+    mouseX < rightSide &&
+    mouseY > topSide &&
+    mouseY < botSide
+  ) {
+    clicked = true;
+  }
 }
