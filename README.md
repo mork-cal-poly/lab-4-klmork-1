@@ -13,6 +13,6 @@ This part is to be completed on your own. It should have:
 This part will be completed in someone else's repo. Pair up. Each partner should:
 
 - Go to the other's repo.
-- Clone the repo (git clone <repo-url>)
-- Make a branch (e.g. git checkout -b <branch-name>)
+- Clone the repo (git clone repo-url)
+- Make a branch (e.g. git checkout -b branch-name)
 - Add your surprise (a creature or character from a previous lab). Add the function and the function call that properly places the creature. You will probably need to add more parameters to your function for rotation and scale.
