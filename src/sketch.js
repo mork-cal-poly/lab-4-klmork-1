@@ -210,7 +210,9 @@ function updateButterfly() {
 
 function updateMiles() {
   milesR += PI / 40;
-  milesS -= 0.02;
+  if (milesS >= 0) {
+    milesS -= 0.005;
+  }
 }
 // Events
 function mousePressed() {
