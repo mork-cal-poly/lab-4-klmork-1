@@ -1,6 +1,6 @@
 let clicked = false;
 
-// Butterfly Location
+// Butterfly Data
 let butterflyX = 50;
 let butterflyY = 300;
 let offsetY = 300;
@@ -9,6 +9,11 @@ let butterflyLeft = -255; // leftmost point on unscaled butterfly
 let butterflyRight = 115; // rightmost point
 let butterflyTop = -145;
 let butterflyBot = 100;
+
+// Miles Data
+let milesX = 300;
+let milesY = 400;
+let milesR = 0;
 
 function setup() {
   // These lines are fitting our canvas
@@ -23,12 +28,16 @@ function draw() {
   background(220);
   drawBackground();
   drawButterfly(butterflyX, butterflyY, butterflyScale);
-  // helper to see mouse location
-  text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
+  drawMiles(milesX, milesY, milesR);
   if (clicked) {
     updateButterfly();
   }
+
+  // helper to see mouse location
+  text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
 }
+
+// Background
 function drawBackground() {
   background(230, 151, 151);
   fill(153, 22, 22, 100); // rust
@@ -39,6 +48,8 @@ function drawBackground() {
   triangle(-50, 200, 350, -150, 450, -170);
   triangle(20, 0, 400, 250, 400, 275);
 }
+
+// Creatures
 function drawButterfly(x, y, s) {
   // butterfly
   push();
@@ -113,6 +124,72 @@ function drawButterfly(x, y, s) {
   pop();
 }
 
+function drawMiles(x, y, r) {
+  push();
+  translate(x, y);
+  rotate(r);
+
+  //draw head
+  fill(0);
+  noStroke();
+  ellipse(0, -155, 60, 75);
+  //eye ring
+  fill(255, 0, 0);
+  ellipse(-15, -160, 22, 17);
+  ellipse(15, -160, 22, 17);
+  //eyes
+  fill(255);
+  ellipse(-15, -160, 18, 13);
+  ellipse(15, -160, 18, 13);
+
+  //arms
+  fill(0);
+  ellipse(-40, -105, 50, 15);
+  ellipse(40, -105, 50, 15);
+  //hands
+  ellipse(-60, -105, 15, 15);
+  ellipse(60, -105, 15, 15);
+
+  //body miles
+  fill(0);
+  ellipse(0, -80, 50, 75);
+  //spider logo
+  stroke(255, 0, 0);
+  fill(255, 0, 0);
+  ellipse(0, -95, 10, 15);
+  //top
+  line(-15, -105, 0, -100);
+  line(15, -105, 0, -100);
+  //top-middle
+  line(-15, -100, 0, -100);
+  line(15, -100, 0, -100);
+  //bottom
+  line(-15, -95, 0, -95);
+  line(15, -95, 0, -95);
+  //bottom-middle
+  line(-15, -90, 0, -95);
+  line(15, -90, 0, -95);
+
+  noStroke();
+  //feet
+  fill(0);
+  ellipse(-15, -5, 20, 10);
+  ellipse(15, -5, 20, 10);
+  //legs
+  ellipse(-10, -30, 20, 50);
+  ellipse(10, -30, 20, 50);
+
+  // show origin
+  fill(0, 255, 255);
+  ellipse(0, 0, 10, 10);
+  stroke(255, 255, 0);
+  line(-100, 0, 100, 0);
+  stroke(0, 0, 255);
+  line(0, 100, 0, -100);
+  pop();
+}
+
+// Update Functions
 function updateButterfly() {
   sinY = 50 * sin((1 / 10) * butterflyX);
   butterflyY = sinY + offsetY;
@@ -121,6 +198,7 @@ function updateButterfly() {
   offsetY -= 1;
 }
 
+// Events
 function mousePressed() {
   // We translate and then scale the canvas
   // When dealing with points, we do the opposite
