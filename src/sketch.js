@@ -1,4 +1,5 @@
 let clicked = false;
+let shouldMilesFall = false;
 
 // Butterfly Data
 let butterflyX = 50;
@@ -31,6 +32,9 @@ function draw() {
   drawMiles(milesX, milesY, milesR);
   if (clicked) {
     updateButterfly();
+  }
+  if (shouldMilesFall) {
+    updateMiles();
   }
 
   // helper to see mouse location
@@ -196,8 +200,15 @@ function updateButterfly() {
 
   butterflyX += 1;
   offsetY -= 1;
+
+  if (butterflyX >= milesX) {
+    shouldMilesFall = true;
+  }
 }
 
+function updateMiles() {
+  milesR += PI / 40;
+}
 // Events
 function mousePressed() {
   // We translate and then scale the canvas
