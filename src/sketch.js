@@ -45,7 +45,7 @@ function draw() {
 // Background
 function drawBackground() {
   background(230, 151, 151);
-  fill(153, 22, 22, 100); // rust
+  fill(255, 0, 0, 255); // rust
   noStroke();
   triangle(0, 30, 400, 300, 0, 400);
 
@@ -69,6 +69,7 @@ function drawButterfly(x, y, s) {
   curveVertex(-175, -95); // valley
   curveVertex(-90, -125); // top right
   //curveVertex(-50, -55);
+  //hi
   curveVertex(0, 0); // origin
   curveVertex(-100, 3); // bottom
   curveVertex(-250, -100); // left again
